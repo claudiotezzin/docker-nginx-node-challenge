@@ -20,11 +20,11 @@ services:
       context: ./node
     container_name: node
     entrypoint: wait-for db:3306 -t 40 -- 
-    command: node ./node/index.js
+    command: node index.js
     networks:
-      - node-network  
+      - node-network
     volumes:
-      - .:/usr/src/app/
+      - ./node:/usr/src/app/
     tty: true
     ports:
       - "3000:3000"

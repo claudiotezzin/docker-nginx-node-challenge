@@ -1,16 +1,12 @@
-FROM node:15
+FROM node:20
 
 RUN apt-get update && \
     apt-get install -y wget netcat && \
     wget -q -O /usr/bin/wait-for https://raw.githubusercontent.com/eficode/wait-for/v2.2.3/wait-for && \
     chmod +x /usr/bin/wait-for
 
-WORKDIR /usr/src/app
-
 COPY . .
 
-RUN npm install
+RUN npm install express --save && npm install mysql2 --save
 
 EXPOSE 3000
-
-# CMD ["node", "index.js"]
